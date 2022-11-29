@@ -18,6 +18,14 @@ namespace WebRepeatedNumbersSieve.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult TransformLiteral(string literal)
+        {
+            ViewData["inputLiteral"] = literal;
+            ViewData["outputLiteral"] = literal + "TEST";
+            return View("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -3,5 +3,9 @@
 }
 
 <div class="text-center">
-    TEST
+    <form asp-controller="Home" asp-action="TransformLiteral" method="post">
+        <input type="text" name="literal" value="@ViewData["inputLiteral"]" />
+        <button type="submit">Press Me</button>
+    </form>
+    <label>@ViewData["outputLiteral"]</label>
 </div>
