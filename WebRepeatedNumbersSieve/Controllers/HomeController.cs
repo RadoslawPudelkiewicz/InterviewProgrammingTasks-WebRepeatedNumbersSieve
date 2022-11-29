@@ -7,10 +7,12 @@ namespace WebRepeatedNumbersSieve.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ILiteralTransformationEngine _literalTransformationEngine;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ILiteralTransformationEngine literalTransformationEngine)
         {
             _logger = logger;
+            _literalTransformationEngine = literalTransformationEngine;
         }
 
         public IActionResult Index()
@@ -22,7 +24,7 @@ namespace WebRepeatedNumbersSieve.Controllers
         public IActionResult TransformLiteral(string literal)
         {
             ViewData["inputLiteral"] = literal;
-            ViewData["outputLiteral"] = literal + "TEST";
+            ViewData["outputLiteral"] = _literalTransformationEngine.DoLiteralTransformation(literal);
             return View("Index");
         }
 

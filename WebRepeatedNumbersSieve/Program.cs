@@ -1,3 +1,10 @@
+using Microsoft.AspNetCore.Routing;
+using WebRepeatedNumbersSieve.Models;
+using WebRepeatedNumbersSieve.Models.ArrayParsers;
+using WebRepeatedNumbersSieve.Models.ArraySerializers;
+using WebRepeatedNumbersSieve.Models.ArrayTransformations;
+using WebRepeatedNumbersSieve.Models.LiteralTransformationEngines;
+
 namespace WebRepeatedNumbersSieve
 {
     public class Program
@@ -8,6 +15,13 @@ namespace WebRepeatedNumbersSieve
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ILiteralTransformationEngine, ArrayLiteralTransformationEngine<int>>();
+            builder.Services.AddSingleton<IArrayParser<int>, IntegerArrayParser>();
+            builder.Services.AddSingleton<IArraySerializer<int>, IntegerArraySerializer>();
+            builder.Services.AddSingleton(typeof(IArrayTransformation<int>),
+                prov => ActivatorUtilities.CreateInstance(prov, typeof(RepeatedElementsSieve<int>), 3));
+            builder.Services.AddScoped<IArrayTransformation<int>, DescendingArraySorter<int>>();
 
             var app = builder.Build();
 

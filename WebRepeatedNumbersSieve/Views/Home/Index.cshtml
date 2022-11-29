@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <form asp-controller="Home" asp-action="TransformLiteral" method="post">
-        <input type="text" name="literal" value="@ViewData["inputLiteral"]" />
+        <input type="text" size="40" name="literal" value="@ViewData["inputLiteral"]" />
         <button type="submit">Press Me</button>
     </form>
     <label>@ViewData["outputLiteral"]</label>
