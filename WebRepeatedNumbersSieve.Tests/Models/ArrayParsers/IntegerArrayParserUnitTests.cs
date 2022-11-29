@@ -12,7 +12,6 @@ namespace WebRepeatedNumbersSieve.Tests.Models.ArrayParsers
             Assert.Throws<ArgumentNullException>(() => _parser.Parse(null));
         }
 
-
         [TestCase("")]
         [TestCase("   ")]
         [TestCase("1,2,3,4,5,1,1")]
